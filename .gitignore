@@ -11,6 +11,7 @@ __pycache__/
 db/*.db
 db/*.db-wal
 db/*.db-shm
+db/*.db-journal
 data/*
 !data/.gitkeep
 
@@ -19,6 +20,31 @@ venv/
 env/
 .venv/
 
+# Ortam değişkenleri / sırlar (henüz .env yok ama proaktif önlem)
+.env
+.env.*
+!.env.example
+
+# Proje köküne bilinçsizce bırakılmış / uygulamayla ilgisiz dosyalar
+Yerel RAG.zip
+kernel.errors.txt
+
+# Derleme / paketleme kalıntıları
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# IDE / editör
+.vscode/
+.idea/
+*.swp
+*.swo
+
 # Sistem Dosyaları
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Loglar
+*.log

@@ -1,7 +1,47 @@
-streamlit>=1.30.0
-pypdf>=3.17.0
-python-docx>=1.1.0
-pandas>=2.0.0
-openpyxl>=3.1.0
+# =============================================================================
+# requirements.txt — Çok Dilli Akıllı RAG Asistanı
+# Doğrulama ortamı: Python 3.13, venv (26 Temmuz 2026 itibarıyla gerçek
+# "pip freeze" çıktısına göre pinlenmiştir).
+# =============================================================================
+
+# --- Web arayüzü (gui.py) ---
+streamlit==1.59.2
+
+# --- Tamamen yerel LLM + embedding çalıştırma ---
+# (gui.py, ingest.py, app.py, search.py, katalog_test.py, llm.py)
+#
+# ⚠️ UYARI — HENÜZ ÇÖZÜLMEMİŞ ÇAKIŞMA: venv'de şu an HEM standart HEM
+# WinML varyantı (foundry-local-sdk + foundry-local-sdk-winml, ayrıca
+# foundry-local-core + foundry-local-core-winml) AYNI ANDA kurulu.
+# Paketin kendi belgelerine göre bu ikisi "mutually exclusive" — aynı
+# ortamda birlikte kurulmamalı. Aşağıda sadece standart (cross-platform,
+# hem Windows hem macOS'ta çalışır — baslat.command macOS'u da hedefliyor)
+# paket pinleniyor. Temizlemek için:
+#   pip uninstall foundry-local-sdk-winml foundry-local-core-winml
+# (Windows'a özel ekstra donanım hızlandırma isterseniz tam tersini yapıp
+# bu satırı foundry-local-sdk-winml==1.2.3 ile değiştirin — ama o zaman
+# macOS'ta çalışmaz.)
+foundry-local-sdk==1.2.3
+
+# --- Dosya okuma: PDF (gui.py, ingest.py, pdf_test.py) ---
+pypdf==6.14.2
+
+# --- Dosya okuma: Word / .docx (gui.py, ingest.py) ---
+# ⚠️ UYARI — HENÜZ ÇÖZÜLMEMİŞ ÇAKIŞMA: venv'de aynı anda hem eski/bakımsız
+# "docx" (0.2.4) hem doğru "python-docx" (1.2.0) kurulu; ikisi de aynı
+# `import docx` adını paylaşıyor. Şu an python-docx çözümlendiği için
+# çalışıyor ama kırılgan bir denge. Temizlemek için:
+#   pip uninstall docx
+python-docx==1.2.0
+
+# --- Dosya okuma: Excel (.xlsx/.xls) ve CSV -> Markdown dönüşümü ---
+pandas==3.0.3
+openpyxl==3.1.5
+# ^ pd.read_excel() (.xlsx/.xls okuma) motoru.
+
+# ⚠️ AKSİYON GEREKİYOR: Bu satır requirements.txt'de yazıyor ama şu an
+# venv'de GERÇEKTEN KURULU DEĞİL (pip freeze ile doğrulandı). pd.to_markdown()
+# bunsuz çalışmaz — yani Excel/CSV indeksleme HÂLÂ KIRIK. Düzeltmek için:
+#   pip install -r requirements.txt
+# (veya doğrudan: pip install tabulate)
 tabulate>=0.9.0
-foundry-local-sdk
