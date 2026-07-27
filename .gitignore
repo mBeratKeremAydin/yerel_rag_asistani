@@ -1,0 +1,24 @@
+# Byte-compiled / Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Streamlit local state
+.streamlit/
+
+# SQLite Veritabanı ve Yerel Veriler (Hassas/Büyük veriler)
+db/*.db
+db/*.db-wal
+db/*.db-shm
+data/*
+!data/.gitkeep
+
+# Sanal Ortam (Virtual Environment)
+venv/
+env/
+.venv/
+
+# Sistem Dosyaları
+.DS_Store
+Thumbs.db
